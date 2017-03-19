@@ -1,3 +1,20 @@
 # bitaksi-getir-backend
 
-On eleme backend challenge.
+# Used libs:
++ Express
++ Mongoose
+
+# To run the project:
+```
+$ npm start
+```
+
+## Endpoints
+```
+POST /getRecords
+
+// body
+{
+      "key" : String
+}
+```

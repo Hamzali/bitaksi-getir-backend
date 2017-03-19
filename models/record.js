@@ -3,8 +3,7 @@ module.exports = (mongoose) => {
 
     const recordSchema  = new Schema({
         key: String,
-        value: String,
-        createdAt: Date
+        value: String
     }, {collection: 'records'});
 
     const records = mongoose.model('Record', recordSchema);
@@ -13,12 +12,7 @@ module.exports = (mongoose) => {
         records.findOne({key: key}, callback);
     };
 
-    const findEverything = (a, cb) => {
-        records.find({}, cb);
-    }
-
     return {
-        findByKey: findByKey,
-        findEverything: findEverything
+        findByKey: findByKey
     }
 }

@@ -5,23 +5,22 @@ const path = require('path');
 
 const bodyparser = require('body-parser');
 
-
-
-
 const app = express();
 
+// DB connection.
 mongoose.connect('mongodb://dbUser:dbPassword@ds155428.mlab.com:55428/getir-bitaksi-hackathon');
 mongoose.connection.on('error', () => {
     console.log('Error on connecting DB');
     process.exit(1);
 });
 
+// Creating router with model.
 const record = require('./controllers/record')(require('./models/record')(mongoose));
 
 const PORT = process.env.PORT || 3000;
 
-app.use(bodyparser.json());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyparser.json({limit: 1000}));
+app.use('/getRecords', express.static(path.join(__dirname, 'public')));
 app.use('/', record);
 
 app.listen(PORT, () => {

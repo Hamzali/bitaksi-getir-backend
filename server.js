@@ -1,8 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-const path = require('path');
-
 const bodyparser = require('body-parser');
 
 const app = express();
@@ -20,7 +18,6 @@ const record = require('./controllers/record')(require('./models/record')(mongoo
 const PORT = process.env.PORT || 3000;
 
 app.use(bodyparser.json({limit: 1000}));
-app.use('/getRecords', express.static(path.join(__dirname, 'public')));
 app.use('/', record);
 
 app.listen(PORT, () => {

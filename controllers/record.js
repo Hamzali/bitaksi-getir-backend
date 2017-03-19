@@ -1,7 +1,5 @@
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
 
-const path = require('path');
 module.exports = (records) => {
     router.post('/getRecord', (req, res) => {
         
@@ -12,9 +10,6 @@ module.exports = (records) => {
                 res.send(data);
             }
         });
-    });
-
-    router.get('/getRecords', express.static(path.join(__dirname, 'public')));
-    
+    });    
     return router;
 }
